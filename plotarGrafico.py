@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import make_regression
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 #_-_-_-_-_-_-_-_-_--_-_-_-_-_-
 # Classes

@@ -5,7 +5,6 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # Imports 
-from pyparsing import restOfLine
 import plotarGrafico as pg
 from tkinter import *
 # Importação para colocar o grafico dentro da janela do tkinter
@@ -18,9 +17,18 @@ class Telatk:
     def __init__(self) -> None:
         '''Classe que gera a GUI onde o usuário entra os dados do grafico
         visualisa o grafico e com botoes interage com o resultado'''
+    
+    #Entrada de valores experimento
+    def  entradaX(self):
+        pass
+    def entradaY(self):
+        pass
+
+
+    def scremm(self):
         janela = Tk()
         janela.title('JF - Análise de Regressão')
-       # janela.geometry('1000x800')
+        #janela.geometry('1000x800')
         caminho = 'Fig/brasaoUFSC.ico'
         # janela.iconbitmap( caminho)
 
@@ -36,7 +44,7 @@ class Telatk:
         frame_grafico = Frame(janela)
         canvasbar = FigureCanvasTkAgg(figura, master=frame_grafico)
         canvasbar.draw()
-        canvasbar.get_tk_widget().grid(row=1, column=0)
+        canvasbar.get_tk_widget().grid(row=0, column=0, sticky=W)
 
         # inserir o logo 
         frame_usuario = Frame(janela)
@@ -45,16 +53,31 @@ class Telatk:
         labLogo = Label(frame_usuario, image=logo)
 
         # Escrita explicativa das entradas
+        campo_X  =  Label(frame_usuario, text='Entrada valores coordenadas X:')
+        entrada_X = Entry(frame_usuario)
+        campo_Y = Label(frame_usuario, text='Entrada valores coordenadas Y:')
+        entrada_Y = Entry(frame_usuario)
 
-
+        ##  BUTOES 
+        cmd_EnterX = Button(frame_usuario, text='Enter X', command= self.entradaX)
+        cmd_EnterY = Button(frame_usuario, text='Enter Y', command= self.entradaY)
 
         #   layout
-        frame_grafico.grid(row=0, column=0)
-        frame_usuario.grid(row=0, column=1)
-        labLogo.pack(anchor=NW, side='top')
+        frame_grafico.grid(row=0, column=0, sticky=W)
+        frame_usuario.grid(row=0, column=1, sticky=E+N)
+        labLogo.grid(row=0, column=4, sticky=E+N)
+        campo_X.grid(row=1, column=0, sticky=W)
+        entrada_X.grid(row=2, column=0, sticky=W)
+        cmd_EnterX.grid(row=3, column=0, sticky=E)
+        campo_Y.grid(row=4, column=0, sticky=W)
+        entrada_Y.grid(row=5, column=0, sticky=W)
+        cmd_EnterY.grid(row=6, column=0, sticky=E)
 
+        
         janela.mainloop()
 
 t1 = Telatk()
+t1.scremm()
+
 
 

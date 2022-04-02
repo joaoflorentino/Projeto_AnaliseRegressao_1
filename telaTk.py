@@ -20,10 +20,27 @@ class Telatk:
     
     #Entrada de valores experimento
     def  entradaX(self):
-        pass
+        ''' Cria a lista de dados para ser passado para Classe de 
+        criação dos graficos '''
+        self.kx = (self.entrada_X.get()).split()
+        print(self.kx)
+        x = []
+        for item in self.kx:
+            x.append(float(item))
+        print(x)
+        return (x)
+        ####################################
     def entradaY(self):
-        pass
-
+        ''' Cria a lista de dados para ser passado para Classe de 
+        criação dos graficos '''
+        self.ky = (self.entrada_Y.get()).split()
+        print(self.ky)
+        y = []
+        for item in self.ky:
+            y.append(float(item))
+        print(y)
+        return (y)
+        ####################################
 
     def scremm(self):
         janela = Tk()
@@ -54,30 +71,42 @@ class Telatk:
 
         # Escrita explicativa das entradas
         campo_X  =  Label(frame_usuario, text='Entrada valores coordenadas X:')
-        entrada_X = Entry(frame_usuario)
+        self.entrada_X = Entry(frame_usuario)
         campo_Y = Label(frame_usuario, text='Entrada valores coordenadas Y:')
-        entrada_Y = Entry(frame_usuario)
+        self.entrada_Y = Entry(frame_usuario)
+
+        
+
 
         ##  BUTOES 
-        cmd_EnterX = Button(frame_usuario, text='Enter X', command= self.entradaX)
+        cmd_EnterX = Button(frame_usuario, text='Enter X', command=  self.entradaX)
         cmd_EnterY = Button(frame_usuario, text='Enter Y', command= self.entradaY)
+
+        #Captura entradas do campo entrada 
+        
+        
 
         #   layout
         frame_grafico.grid(row=0, column=0, sticky=W)
         frame_usuario.grid(row=0, column=1, sticky=E+N)
         labLogo.grid(row=0, column=4, sticky=E+N)
         campo_X.grid(row=1, column=0, sticky=W)
-        entrada_X.grid(row=2, column=0, sticky=W)
+        self.entrada_X.grid(row=2, column=0, sticky=W)
         cmd_EnterX.grid(row=3, column=0, sticky=E)
         campo_Y.grid(row=4, column=0, sticky=W)
-        entrada_Y.grid(row=5, column=0, sticky=W)
+        self.entrada_Y.grid(row=5, column=0, sticky=W)
         cmd_EnterY.grid(row=6, column=0, sticky=E)
+
+        campo_X.focus() ## Comando para o cursor ficar ja pronto neste campo aguardando entrada
 
         
         janela.mainloop()
 
 t1 = Telatk()
 t1.scremm()
+print(t1.entradaX)
+print(t1.entradaY)
+
 
 
 

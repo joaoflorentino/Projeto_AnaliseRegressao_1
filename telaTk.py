@@ -5,7 +5,6 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # Imports 
-from operator import ne
 import plotarGrafico as pg
 from tkinter import *
 # Importação para colocar o grafico dentro da janela do tkinter
@@ -19,11 +18,91 @@ class Telatk:
         '''Classe que gera a GUI onde o usuário entra os dados do grafico
         visualisa o grafico e com botoes interage com o resultado'''
         self.janela = Tk()
-        self.janela.title('JF - Análise de Regressão')
-        #janela.geometry('1000x800')
-        caminho = 'Fig/brasaoUFSC.ico'
-        # janela.iconbitmap( caminho)
+        self.telaScreem()
+        self.framesScreem()
+        self.screemGrafico()
+        self.poeLogo()
+        self.enterUser()
+        
+        
+        self.janela.mainloop()
     
+    def telaScreem (self):
+        '''Função que define o formato geral da tela '''
+        caminho = 'Fig/brasaoUFSC.ico'
+        # self.janela.iconbitmap( caminho)
+        self.janela.title('JF - Análise de Regressão')
+        self.janela.configure(bg='#943143')
+        self.janela.geometry('1000x500')
+        self.janela.resizable(True, True)  # Permite a janela ser aumentada ou diminuida tanto em x quanto em  y
+        self.janela.maxsize(width=1200, height=700)  # Define o tamanho maximo da tela
+        self.janela.minsize(width= 800, height= 300)
+
+    def framesScreem (self):
+        '''Função que define o tamnho e a posição dos frames'''
+        # FRAME 2
+        self.frame1 = Frame(self.janela, bd=4 ,bg='#f0f7f2', highlightbackground='#610923', highlightthickness=3)
+        self.frame1.place(relx=0.01, rely=0.02, relwidth=0.65, relheight=0.96)
+        #O codigo acima define uma area responsiva para o frame 1 e o tamnho responsivo dele 
+        # FRAME 2
+        self.frame2 = Frame(self.janela, bd=4 ,bg='#f0f7f2', highlightbackground='#610923', highlightthickness=3)
+        self.frame2.place(relx=0.62, rely=0.02, relwidth=0.37, relheight=0.96)
+        #O codigo acima define uma area responsiva para o frame 1 e o tamnho responsivo dele 
+    
+    def screemGrafico(self):
+        '''Função que posiciona o grafico dentro do frame1'''
+        figura = plt.figure(figsize=(8,4), dpi=100)
+        figura.set_size_inches(6, 4)
+        fig =  figura.add_subplot(111)
+        canvasbar = FigureCanvasTkAgg(figura, master=self.frame1)
+        canvasbar.draw()
+        canvasbar.get_tk_widget().place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.97)
+    
+    def poeLogo(self):
+        cami2 = '/media/joaoflorentino/J_FLORENTINO/[00] Python 2022/UFSC/Lab_Fisica_Grafs/Projeto_AnaliseRegressao_1/Fig/LogoJoao-2019pq.png'
+        logo = PhotoImage(file= cami2)
+        labLogo = Label(self.frame2, image=logo)
+        labLogo.place(relx=0.65,rely=0.01, relwidth=0.35, relheight=0.25)
+    
+    def enterUser (self):
+        '''Função que dispoe as entradas de usuário para gerar grafico'''
+        self.campo_X  =  Label(self.frame2, text='Entrada valores coordenadas X:')
+        self.campo_X.place(relx=0.01, rely=0.28)
+        self.explic1 = Label(self.frame2, text='** Entrar valores separados por espaço, tanto em X como em Y', fg='red')
+        self.explic1.place(relx=0.01, rely=0.32)
+        self.entrada_X = Entry(self.frame2, width=48)
+        self.entrada_X.place(relx=0.01, rely=0.36)
+        self.entrada_X.focus() ## Comando para o cursor ficar ja pronto neste campo aguardando entrada
+        self.cmd_EnterX = Button(self.frame2, text='Enter X', command=  self.entradaX)
+        self.cmd_EnterX.place(relx=0.78, rely=0.41)
+
+
+
+        """
+        campo_Y = Label(self.frame_usuario, text='Entrada valores coordenadas Y:')
+        self.entrada_Y = Entry(self.frame_usuario, width=55)
+        escala = Label(self.frame_escala, text='Definir escala dos eixos X e Y:', fg='blue')
+        escalaxTex = Label(self.frame_escala,text='min X:', width=6)
+        escalaValX = Entry(self.frame_escala,width=6)
+        
+
+
+        
+        ##  BUTOES 
+        
+        cmd_EnterY = Button(self.frame_usuario, text='Enter Y', command= self.entradaY)
+"""
+
+
+
+
+
+
+
+
+
+
+
     #Entrada de valores experimento
     def  entradaX(self):
         ''' Cria a lista de dados para ser passado para Classe de 
@@ -53,17 +132,10 @@ class Telatk:
         #Recebendo o grafico e a equação da classe plortarGrafico
         #equation, fig = pg.graficoPontos()
         ## Criando figura nova 
-        figura = plt.figure(figsize=(8,4), dpi=100)
-        figura.set_size_inches(6, 4)
-        fig =  figura.add_subplot(111)
+        
 
         ###    WIDGETS  ##########
-        # Janela do Grafico
-        self.frame_grafico = Frame(self.janela)
-        canvasbar = FigureCanvasTkAgg(figura, master=self.frame_grafico)
-        canvasbar.draw()
-        canvasbar.get_tk_widget().pack(side='left')
-
+        
         # Janela Usuário +++++++++++++
         # Frame 1
 
@@ -71,27 +143,10 @@ class Telatk:
         self.frameLogo = Frame(self.frame_usuario, height= 20, width=100)
         self.frame_escala = Frame(self.frame_usuario, bg="#9ef7cb")
 
-        cami2 = '/media/joaoflorentino/J_FLORENTINO/[00] Python 2022/UFSC/Lab_Fisica_Grafs/Projeto_AnaliseRegressao_1/Fig/LogoJoao-2019pq.png'
-        logo = PhotoImage(file= cami2)
-        labLogo = Label(self.frame_usuario, image=logo)
+        
         # Escrita explicativa das entradas
        
-        campo_X  =  Label(self.frame_usuario, text='Entrada valores coordenadas X:')
-        explic1 = Label(self.frame_usuario, text='** Entrar com os valores separados por espaço, tanto em X como em Y', fg='red')
-        self.entrada_X = Entry(self.frame_usuario, width=55)
-        campo_Y = Label(self.frame_usuario, text='Entrada valores coordenadas Y:')
-        self.entrada_Y = Entry(self.frame_usuario, width=55)
-        # Frame 2
         
-        escala = Label(self.frame_escala, text='Definir escala dos eixos X e Y:', fg='blue')
-        escalaxTex = Label(self.frame_escala,text='min X:', width=6)
-        escalaValX = Entry(self.frame_escala,width=6)
-
-
-        
-        ##  BUTOES 
-        cmd_EnterX = Button(self.frame_usuario, text='Enter X', command=  self.entradaX)
-        cmd_EnterY = Button(self.frame_usuario, text='Enter Y', command= self.entradaY)
 
     
     
@@ -105,28 +160,14 @@ class Telatk:
 
         #-=-=-=-=-=-= Botoes,  Textos  e  Entrys  =-=-=-=-=-=-=-=-
         # Pertencem ao Frame 1
-        labLogo.pack(side='right', anchor='ne')
-        campo_X.pack(side='left')
-        explic1.pack(side='left')
-        #self.entrada_X.pack(side='bottom')
-       # cmd_EnterX.pack(side='bottom')
-       # campo_Y.pack(side='bottom')
-        #self.entrada_Y.pack(side='bottom')
-        #cmd_EnterY.pack(side='bottom')
-        # Pertencem ao Fram 2
-        #escala.pack(side='bottom')
-        #escalaxTex.pack(side='bottom')
-        #escalaValX.pack(side='right')
-
-        campo_X.focus() ## Comando para o cursor ficar ja pronto neste campo aguardando entrada
+        
 
         
-        self.janela.mainloop()
+
+        
+        
 
 t1 = Telatk()
-t1.scremm()
-print(t1.entradaX)
-print(t1.entradaY)
 
 
 

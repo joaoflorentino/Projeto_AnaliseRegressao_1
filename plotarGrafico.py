@@ -15,34 +15,33 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # Classes
 
 class Plotargrafico:
-    def __init__(self, X, Y) -> None:
+    def __init__(self, X, Y, minX, maxX, minY, maxY, ttgraf, eiX, eiY ) -> None:
         ''' Classe que recebe os dados gerados no experimento para 
         montagem do grafico. Retorna figura com grafico '''
-        self.coodenadasX = X # recebe uma lista com os valores de X
-        self.coodenadasY = Y # recebe uma lista com os valores de Y
+        self.coodenadasX = [X] # recebe uma lista com os valores de X
+        self.coodenadasY = [Y] # recebe uma lista com os valores de Y
+        self.mx = minX  # recebe o valor minimo de X
+        self.Mx = maxX # recebe o valor maximo de x
+        self.my = minY # recebe o valor minimo de y
+        self.My = maxY # recebe o valor maximo de  y
+        self.tt = ttgraf # recebe o titulo do grafico
+        self.eix = eiX # recebe o titulo do eixo x com unidade
+        self.eiy = eiY  # recebe o valor do eixo y com  unidade 
+        # iniciaplotagem 
+        self.graficoPontos()
+
     def graficoPontos(self):
         ''' Função que gera dois graficos um de pontos X x Y e uma reta no 
         SkitLearning da regressão destes pontos'''
-        ## Entra os dados do Gráfico ##
-        # Texto
-        titulo = str(input())  #solicita titulo do grafico para figura
-        EixoX = str(input()) #solicita descrição do eixo X e unidades
-        EixoY = str(input()) #solicita descrição do eixo Y e unidades 
-        # Numericos
-        escalaXmin = float(input())
-        escalaXmax = float(input())
-        escalaYmin = float(input())
-        escalaYmax = float(input())
-        
         ################ FORMATA O GRAFICO #################
         plt.style.use('ggplot') # estilo ggplot
         plt.plot(self.coodenadasX,self.coodenadasY,'X') # plota os pontos da lista de dados
 
-        plt.title(titulo,fontsize=10, fontweight='bold')
-        plt.axis([escalaXmin, escalaXmax, escalaYmin, escalaYmax]) # [xmin, xmax, ymin, ymax]  #Define o tamanho dos eixos
+        plt.title(self.tt,fontsize=10, fontweight='bold')
+        plt.axis([self.mx, self.Mx, self.my, self.My]) # [xmin, xmax, ymin, ymax]  #Define o tamanho dos eixos
         #plt.xticks(range(0,0.0010 , 0.00001)) #Muda a escala de divisões do eixo X usando o range de 0 a 100 de 10 em 10
-        plt.ylabel(EixoY, fontsize=9,  fontweight='bold')
-        plt.xlabel(EixoX, fontsize=9, fontweight='bold')
+        plt.ylabel(self.eiy, fontsize=9,  fontweight='bold')
+        plt.xlabel(self.eix, fontsize=9, fontweight='bold')
         plt.grid(color='r', linestyle='dotted', linewidth=1)
 
         ##  Skitlearning faz a Regressão Linear aqui 
@@ -53,16 +52,16 @@ class Plotargrafico:
         Y = np.array(self.coodenadasY) # cria um array Y para skitlearning
         linreg = LinearRegression().fit(X, Y) # Cria o modelo de regressão Linear 
 
-        equacao = (f'Y = {linreg.intercept_} + {linreg.coef_} X')
+        self.equacao = (f'Y = {linreg.intercept_} + {linreg.coef_} X')
         #print(f' Equação ->  Y = {linreg.intercept_} + {linreg.coef_} X')
 
         # Plota o grafico da regressão com os coeficientes achados acima 
         plt.plot(self.coodenadasX, linreg.coef_ * self.coodenadasX + linreg.intercept_, 'b-', color='g')
 
         # apresentas os dois graficos ( os pontos e a reta de regressão)
-        fig = plt.gcf()  # salva a figura gerada na variável fig
+        self.fig = plt.gcf()  # salva a figura gerada na variável fig
         ##  TERMINO DO GRAFICO JOAO *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-        return (equacao, fig)
+        return (self.equacao, self.fig)
 
 if __name__ ==  '__main__': 
     k1 = [1, 0.9698, 0.8830, 0.75, 0.5868, 0.4132, 0.25, 0.1170, 0.0301, 0]

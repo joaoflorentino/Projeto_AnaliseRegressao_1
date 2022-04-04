@@ -18,8 +18,8 @@ class Plotargrafico:
     def __init__(self, X, Y, minX, maxX, minY, maxY, ttgraf, eiX, eiY ) -> None:
         ''' Classe que recebe os dados gerados no experimento para 
         montagem do grafico. Retorna figura com grafico '''
-        self.coodenadasX = [X] # recebe uma lista com os valores de X
-        self.coodenadasY = [Y] # recebe uma lista com os valores de Y
+        self.coodenadasX = X # recebe uma lista com os valores de X
+        self.coodenadasY = Y # recebe uma lista com os valores de Y
         self.mx = minX  # recebe o valor minimo de X
         self.Mx = maxX # recebe o valor maximo de x
         self.my = minY # recebe o valor minimo de y
@@ -46,17 +46,17 @@ class Plotargrafico:
 
         ##  Skitlearning faz a Regressão Linear aqui 
         # Roda o modelo
-        X = np.array(self.coodenadasX).reshape(-1,1)  # cria um array X para skitlearnin      # Escreve a equação os coeficientes da equação no terminal
+        self.X = np.array(self.coodenadasX).reshape(-1,1)  # cria um array X para skitlearnin      # Escreve a equação os coeficientes da equação no terminal
         #print('linear model coeff (w): {}' .format(linreg.coef_))
         #print('linear model intercept (b): {:.3f}' .format(linreg.intercept_))g
-        Y = np.array(self.coodenadasY) # cria um array Y para skitlearning
-        linreg = LinearRegression().fit(X, Y) # Cria o modelo de regressão Linear 
+        self.Y = np.array(self.coodenadasY) # cria um array Y para skitlearning
+        linreg = LinearRegression().fit(self.X, self.Y) # Cria o modelo de regressão Linear 
 
         self.equacao = (f'Y = {linreg.intercept_} + {linreg.coef_} X')
         #print(f' Equação ->  Y = {linreg.intercept_} + {linreg.coef_} X')
 
         # Plota o grafico da regressão com os coeficientes achados acima 
-        plt.plot(self.coodenadasX, linreg.coef_ * self.coodenadasX + linreg.intercept_, 'b-', color='g')
+        plt.plot(self.coodenadasX, linreg.coef_ * self.coodenadasX + linreg.intercept_, color='g')
 
         # apresentas os dois graficos ( os pontos e a reta de regressão)
         self.fig = plt.gcf()  # salva a figura gerada na variável fig

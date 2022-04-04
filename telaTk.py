@@ -5,7 +5,7 @@
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # Imports 
-import plotarGrafico as ptg
+
 from tkinter import *
 # Importação para colocar o grafico dentro da janela do tkinter
 from plotarGrafico import *
@@ -23,9 +23,9 @@ class Telatk():
         self.screemGrafico()
         self.poeLogo()
         self.enterUser()
-        
-        
+        ## Conservação da Janela Tkinter
         self.janela.mainloop()
+    
     
     def telaScreem (self):
         '''Função que define o formato geral da tela '''

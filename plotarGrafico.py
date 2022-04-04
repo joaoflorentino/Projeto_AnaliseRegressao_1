@@ -61,15 +61,23 @@ class Plotargrafico:
         # apresentas os dois graficos ( os pontos e a reta de regressão)
         self.fig = plt.gcf()  # salva a figura gerada na variável fig
         ##  TERMINO DO GRAFICO JOAO *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-        return (self.equacao, self.fig)
+        return (self.fig)
 
 if __name__ ==  '__main__': 
     k1 = [1, 0.9698, 0.8830, 0.75, 0.5868, 0.4132, 0.25, 0.1170, 0.0301, 0]
     k2 = [1, 0.91, 0.88, 0.75, 0.59, 0.41, 0.25, 0.12, 0.03, 0]
+    mx = 0
+    Mx=1.2
+    my= 0
+    My= 1.2
+    tt = 'Telescopio de Kepler'
+    ex = 'Abertura (mm)'
+    ey= 'Ganho (admensional)'
 
-    gr = Plotargrafico(k1,k2)
 
-    eq, plot = gr.graficoPontos()
-    print(eq)
+    gr = Plotargrafico(k1,k2,mx,Mx,my,My,tt,ex,ey)
+
+    plot = gr.graficoPontos()
+   # print(eq)
     plt.show()
 

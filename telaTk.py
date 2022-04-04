@@ -51,6 +51,7 @@ class Telatk():
     
     def screemGrafico(self):
         '''Função que posiciona o grafico dentro do frame1'''
+        #self.figrafico = F
         self.figura = plt.figure(figsize=(8,4), dpi=100)
         self.figura.set_size_inches(6, 4)
         self.figrafico =  self.figura.add_subplot(111)
@@ -207,15 +208,15 @@ class Telatk():
         self.eix = self.titeixoX # recebe o titulo do eixo x com unidade
         self.eiy = self.titeixoY  # recebe o valor do eixo y com  unidade 
         ## Chama a classe plotarGrafico
-        self.equacao, self.figrafico = Plotargrafico(self.coodenadasX, self.coodenadasY, self.mx,self.Mx, self.my, self.My, self.tt, self.eix, self.eiy)
-        print(f'Equação Lenearizada =>  {self.equacao}')
+        self.figrafico = Plotargrafico(self.coodenadasX, self.coodenadasY, self.mx,self.Mx, self.my, self.My, self.tt, self.eix, self.eiy)
+        #print(f'Equação Lenearizada =>  {self.equacao}')
+        # (f'Y = {linreg.intercept_} + {linreg.coef_} X')
 
     
     def chamaInterativo(self):
-        pass
+            plt.show()
         ##########################################
-        
-        
+    
 
 
 t1 = Telatk()

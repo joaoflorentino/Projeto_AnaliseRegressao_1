@@ -9,6 +9,6 @@ Programa em python que recebe dados  de um experimento em laboratório e
 plota os pontons no grafico e cria uma reta através da técnica de análise de regressão.
 ***
 Exemplo real de um experimento em 2021 - Laboratório de Fisica IV
-
+![TelaexempoJoao](
 
 

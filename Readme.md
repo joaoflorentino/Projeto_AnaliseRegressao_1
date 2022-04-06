@@ -3,7 +3,12 @@
 - Joao Florentino Dev 2022 
 - para regressão linear 
 - Lab Física IV UFSC 
-> status - Desenvolvimento 🛠️
+> status - Desenvolvimento mas funcionando 🛠️
 ### Descrição completa:
-Programa em python que recebe dados experimentais de um experimento em laboratório e 
+Programa em python que recebe dados  de um experimento em laboratório e 
 plota os pontons no grafico e cria uma reta através da técnica de análise de regressão.
+***
+Exemplo real de um experimento em 2021 - Laboratório de Fisica IV
+
+
+

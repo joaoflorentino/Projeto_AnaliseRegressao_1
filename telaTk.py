@@ -8,8 +8,11 @@
 
 from tkinter import *
 # Importação para colocar o grafico dentro da janela do tkinter
-from plotarGrafico import *
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib import pyplot as plt
+from matplotlib.figure import Figure
+from plotarGrafico import  Plotargrafico
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+
 
 ##  GUI
 
@@ -52,13 +55,17 @@ class Telatk():
     def screemGrafico(self):
         '''Função que posiciona o grafico dentro do frame1'''
         #self.figrafico = F
-        self.figura = plt.figure(figsize=(8,4), dpi=100)
-        self.figura.set_size_inches(6, 4)
-        self.figrafico =  self.figura.add_subplot(111)
+        self.figura = plt.figure(figsize=(5,5),  dpi=100)
+        #self.figura.set_size_inches(6, 4)
         self.canvasbar = FigureCanvasTkAgg(self.figura, master=self.frame1)
-        self.canvasbar.draw()
+        self.figrafico =  self.figura.add_subplot(111)
         self.canvasbar.get_tk_widget().place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.97)
-    
+        self.toobar = NavigationToolbar2Tk(self.canvasbar, self.frame1)
+        self.canvasbar._tkcanvas.place(relx=0.00, rely=0.00, relwidth=0.98, relheight=0.97)
+        self.canvasbar.draw()
+
+
+
     def poeLogo(self):
         self.cami1 = 'Fig/AssinaturaPython-2022-Small.png'
         self.logo1 = PhotoImage(file=self.cami1)

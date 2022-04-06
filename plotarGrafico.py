@@ -6,7 +6,7 @@
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 # Imports 
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import make_regression
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -59,7 +59,7 @@ class Plotargrafico:
         plt.plot(self.coodenadasX, linreg.coef_ * self.coodenadasX + linreg.intercept_, color='g')
 
         # apresentas os dois graficos ( os pontos e a reta de regressão)
-        self.fig = plt.gcf()  # salva a figura gerada na variável fig
+        self.fig = plt.gcf().canvas  # salva a figura gerada na variável fig
         ##  TERMINO DO GRAFICO JOAO *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
         return (self.fig)
 

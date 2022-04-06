@@ -13,7 +13,6 @@ from matplotlib.figure import Figure
 from plotarGrafico import  Plotargrafico
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
-
 ##  GUI
 
 class Telatk():
@@ -56,15 +55,12 @@ class Telatk():
         '''Função que posiciona o grafico dentro do frame1'''
         #self.figrafico = F
         self.figura = plt.figure(figsize=(5,5),  dpi=100)
-        #self.figura.set_size_inches(6, 4)
         self.canvasbar = FigureCanvasTkAgg(self.figura, master=self.frame1)
         self.figrafico =  self.figura.add_subplot(111)
         self.canvasbar.get_tk_widget().place(relx=0.01, rely=0.01, relwidth=0.98, relheight=0.97)
         self.toobar = NavigationToolbar2Tk(self.canvasbar, self.frame1)
         self.canvasbar._tkcanvas.place(relx=0.00, rely=0.00, relwidth=0.98, relheight=0.97)
-        self.canvasbar.draw()
-
-
+        #self.canvasbar.draw()  Passa da para linha  218 para jogar nova figura no Frame 1
 
     def poeLogo(self):
         self.cami1 = 'Fig/AssinaturaPython-2022-Small.png'
@@ -147,7 +143,7 @@ class Telatk():
         criação dos graficos '''
         self.kx = (self.entrada_X.get()).split()
         self.entrada_X.delete(0,END) # Depois de pegar os valores apaga o camppo Entry
-        print(self.kx)
+        #print(self.kx)
         self.x = []
         for item in self.kx:
             self.x.append(float(item))
@@ -159,7 +155,7 @@ class Telatk():
         criação dos graficos '''
         self.ky = (self.entrada_Y.get()).split()
         self.entrada_Y.delete(0,END) # Depois de pegar os valores apaga o camppo Entry
-        print(self.ky)
+        #print(self.ky)
         self.y = []
         for item in self.ky:
             self.y.append(float(item))
@@ -215,10 +211,8 @@ class Telatk():
         self.eix = self.titeixoX # recebe o titulo do eixo x com unidade
         self.eiy = self.titeixoY  # recebe o valor do eixo y com  unidade 
         ## Chama a classe plotarGrafico
-        self.figrafico = Plotargrafico(self.coodenadasX, self.coodenadasY, self.mx,self.Mx, self.my, self.My, self.tt, self.eix, self.eiy)
-        #print(f'Equação Lenearizada =>  {self.equacao}')
-        # (f'Y = {linreg.intercept_} + {linreg.coef_} X')
-
+        self.figrafico= Plotargrafico(self.coodenadasX, self.coodenadasY, self.mx,self.Mx, self.my, self.My, self.tt, self.eix, self.eiy)
+        self.canvasbar.draw()
     
     def chamaInterativo(self):
             plt.show()

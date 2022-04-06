@@ -57,10 +57,14 @@ class Plotargrafico:
 
         # Plota o grafico da regressão com os coeficientes achados acima 
         plt.plot(self.coodenadasX, linreg.coef_ * self.coodenadasX + linreg.intercept_, color='g')
-
+        a = linreg.intercept_
+        b = linreg.coef_
         # apresentas os dois graficos ( os pontos e a reta de regressão)
+        print(f' Equação da Reta  Y = {a} + {b} * X')
+        ## Cria figura dos dois graficos e prepara para envio
         self.fig = plt.gcf().canvas  # salva a figura gerada na variável fig
         ##  TERMINO DO GRAFICO JOAO *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+        
         return (self.fig)
 
 if __name__ ==  '__main__': 

@@ -86,10 +86,10 @@ print('linear model coeff (w): {}'
 .format(linreg.coef_))
 print('linear model intercept (b): {:.3f}'
 .format(linreg.intercept_))
-print(f' Equação ->  Y = {linreg.intercept_} + {linreg.coef_} X')
+print(f' Equação ->  Y = {linreg.intercept_} + {linreg.coef_} * X')
 
 # Plota o grafico da regressão com os coeficientes achados acima 
-plt.plot(x, linreg.coef_ * x + linreg.intercept_, 'b-', color='g')
+plt.plot(x, linreg.coef_ * x + linreg.intercept_, color='g')
 
 # apresentas os dois graficos ( os pontos e a reta de regressão)
 fig = plt.gcf()  # salva a figura gerada na variável fig

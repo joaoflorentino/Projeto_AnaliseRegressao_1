@@ -41,9 +41,11 @@ text_1.place(relx=0.20, rely=0.05 )
 text_2 = Label(frame_2,text='Análise de Regressão', font=('gothic', 18,'bold'), fg='#8f1a35', bg='#4287f5')
 text_2.place(relx=0.28,rely=0.40)
 
-#  Botão 
-
-cmd_but = Button(frame_2, text='Iniciar', bg='#66eb42', command= Telatk )
+#  Botão  para iniciar processo 
+def entraGrafico():
+    gama.destroy()  #fecha janela atual e chama a tela do programa em si
+    t1 = Telatk()
+cmd_but = Button(frame_2, text='Iniciar', bg='#66eb42', command= entraGrafico )
 cmd_but.place(relx=0.48, rely=0.75)
 
 gama.mainloop()

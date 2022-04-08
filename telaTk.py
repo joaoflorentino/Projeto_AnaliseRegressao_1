@@ -217,10 +217,10 @@ class Telatk():
     def chamaInterativo(self):
             plt.show()
         ##########################################
+
+if __name__ ==  '__main__': 
+    t1 = Telatk()
     
-
-
-t1 = Telatk()
 
 
 
